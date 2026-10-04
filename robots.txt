@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://cicangeorgealin.github.io/cican-crypto-mining-lab/sitemap.xml
