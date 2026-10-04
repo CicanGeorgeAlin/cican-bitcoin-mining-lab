@@ -23,8 +23,11 @@ h2{margin-top:55px}
 .card{border:1px solid #252525;border-radius:16px;padding:20px;margin:14px 0;background:#080808}
 .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
 .metric{font-size:34px;font-weight:800}
+.step{display:grid;grid-template-columns:54px 1fr;gap:16px;align-items:start}
+.num{font-size:28px;font-weight:800}
+code{display:block;margin-top:12px;padding:14px;border-radius:10px;background:#000;border:1px solid #222;overflow:auto;color:#ddd}
 small{color:#999}
-@media(max-width:700px){.grid{grid-template-columns:1fr}}
+@media(max-width:700px){.grid{grid-template-columns:1fr}.step{grid-template-columns:42px 1fr}}
 </style>
 </head>
 <body>
@@ -33,6 +36,7 @@ small{color:#999}
 <h1>CICAN</h1>
 <h2>Your phone is already a computer. Find out what it can actually mine.</h2>
 <p>Mine. Measure. Compare. Learn.</p>
+
 <section>
 <h2>Pixel 6 — first live Monero test</h2>
 <div class="grid">
@@ -41,20 +45,56 @@ small{color:#999}
 <div class="card"><small>Captured pool shares</small><div class="metric">49 / 49</div></div>
 </div>
 </section>
+
 <section>
 <h2>What we measured</h2>
 <div class="card">Google Pixel 6 · Android 17 · Primo ARM Miner · Monero RandomX · XMRPool TLS</div>
 <div class="card">Captured terminal sequence: accepted shares 49/49; rejected shares 0 in the captured sequence.</div>
 <div class="card">Power: battery-side measurements only so far. A USB-C power meter is required for a proper wall/input-watt measurement.</div>
 </section>
+
+<section>
+<h2>How to do it yourself</h2>
+<div class="card step"><div class="num">01</div><div><strong>Choose a cryptocurrency and algorithm.</strong><br><small>Start with an algorithm your device can actually run. RandomX is a useful CPU experiment.</small></div></div>
+<div class="card step"><div class="num">02</div><div><strong>Create your own wallet.</strong><br><small>Never share your seed phrase or private keys. Use your own receiving address.</small></div></div>
+<div class="card step"><div class="num">03</div><div><strong>Install a miner for your device.</strong><br><small>On Android, a terminal such as Termux can be used for compatible CPU miners.</small></div></div>
+<div class="card step"><div class="num">04</div><div><strong>Connect to a pool.</strong><br><small>Use the pool's official documentation and enter your own wallet address.</small></div></div>
+<div class="card step"><div class="num">05</div><div><strong>Measure before you believe the numbers.</strong><br><small>Record hashrate, accepted shares, temperature, runtime and electricity use.</small></div></div>
+</section>
+
+<section>
+<h2>Example: our RandomX test</h2>
+<div class="card">
+<strong>Pixel 6 · 8 threads · RandomX · XMRPool TLS</strong>
+<code>primo-arm-miner -a randomx -o stratum+ssl://xmrpool.eu:3333 -u YOUR_WALLET_ADDRESS -p x -t 8</code>
+<small>Replace YOUR_WALLET_ADDRESS with your own wallet address. Never paste a seed phrase or private key.</small>
+</div>
+</section>
+
+<section>
+<h2>How to improve the result</h2>
+<div class="card"><strong>1. Test thread counts.</strong><br><small>More threads do not always mean better efficiency. Compare performance at different settings.</small></div>
+<div class="card"><strong>2. Control heat.</strong><br><small>Thermal throttling can reduce sustained hashrate. Cooling and airflow matter.</small></div>
+<div class="card"><strong>3. Measure electricity.</strong><br><small>Battery readings are not the same as wall power. Use a USB-C power meter for proper input measurements.</small></div>
+<div class="card"><strong>4. Compare devices.</strong><br><small>Hashrate alone is not enough. Compare hashrate per watt and estimated earnings per day.</small></div>
+<div class="card"><strong>5. Separate benchmark from real mining.</strong><br><small>A local benchmark proves what hardware can calculate. Pool mining shows whether the complete setup actually works.</small></div>
+</section>
+
+<section>
+<h2>What CICAN is building</h2>
+<div class="card">A public, evidence-first benchmark of real devices — phones, tablets, laptops, desktops and other hardware — showing what they can mine, how fast they are, how much energy they use and whether the economics make sense.</div>
+</section>
+
 <section>
 <h2>Core question</h2>
 <div class="card"><strong>How much cryptocurrency can an ordinary phone in your pocket actually earn?</strong><br><small>We answer with measurements, not marketing claims.</small></div>
 </section>
+
 <section>
-<h2>Next experiments</h2>
-<div class="card">24-hour sustained test → energy measurement → profitability → multi-device fleet comparison → public benchmark database.</div>
+<h2>Roadmap</h2>
+<div class="card">Device benchmarks → algorithm comparison → energy measurement → profitability calculator → multi-device comparison → public benchmark database.</div>
 </section>
+
 <footer><p><small>CICAN CRYPTO MINING LAB · CICAN GEORGE ALIN · Mine. Measure. Compare. Learn.</small></p></footer>
 </main>
 </body>
