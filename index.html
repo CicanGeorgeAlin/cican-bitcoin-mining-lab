@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>CICAN Crypto Mining Lab</title>
-<meta name="description" content="CICAN Crypto Mining Lab — real-device crypto mining experiments, benchmarks, energy measurements and profitability research.">
+<meta name="description" content="CICAN Crypto Mining Lab — learn, mine, measure and compare real cryptocurrency mining experiments.">
 <meta property="og:type" content="website">
 <meta property="og:title" content="CICAN Crypto Mining Lab">
 <meta property="og:description" content="Your phone is already a computer. Find out what it can actually mine.">
@@ -35,6 +35,7 @@ code{display:block;margin-top:12px;padding:14px;border-radius:10px;background:#0
 .result .value{font-size:27px;font-weight:800;margin-top:6px}
 .positive{border-color:#666}
 .negative{border-color:#333}
+.link{color:#fff;text-decoration:underline;text-underline-offset:3px}
 .note{font-size:12px;color:#888;margin-top:12px}
 @media(max-width:700px){.grid,.calculator,.results{grid-template-columns:1fr}.step{grid-template-columns:42px 1fr}}
 </style>
@@ -44,22 +45,35 @@ code{display:block;margin-top:12px;padding:14px;border-radius:10px;background:#0
 <p>CICAN CRYPTO MINING LAB</p>
 <h1>CICAN</h1>
 <h2>Your phone is already a computer. Find out what it can actually mine.</h2>
-<p>Mine. Measure. Compare. Learn.</p>
+<p>Learn. Mine. Measure. Compare.</p>
 
 <section>
-<h2>Pixel 6 — first live Monero test</h2>
-<div class="grid">
-<div class="card"><small>Observed hashrate</small><div class="metric">317–353 H/s</div></div>
-<div class="card"><small>Working estimate</small><div class="metric">~337 H/s</div></div>
-<div class="card"><small>Captured pool shares</small><div class="metric">49 / 49</div></div>
-</div>
+<h2>Start here — learn by doing</h2>
+<div class="card">This lab is a step-by-step classroom as well as a real experiment. Everything we learn here is documented so another person can repeat it, understand the commands, check the sources and measure their own result.</div>
 </section>
 
 <section>
-<h2>What we measured</h2>
-<div class="card">Google Pixel 6 · Android 17 · Primo ARM Miner · Monero RandomX · XMRPool TLS</div>
-<div class="card">Captured terminal sequence: accepted shares 49/49; rejected shares 0 in the captured sequence.</div>
-<div class="card">Power: battery-side measurements only so far. A USB-C power meter is required for a proper wall/input-watt measurement.</div>
+<h2>Learning path</h2>
+<div class="card step"><div class="num">01</div><div><strong>Understand mining</strong><br><small>Learn what proof-of-work, hashes, algorithms, miners, pools and shares actually mean. <a class="link" href="https://docs.getmonero.org/interacting/mining/">Read the Monero mining documentation →</a></small></div></div>
+<div class="card step"><div class="num">02</div><div><strong>Choose your hardware</strong><br><small>Phone, tablet, laptop or desktop. First identify the CPU/GPU and what algorithms it can run.</small></div></div>
+<div class="card step"><div class="num">03</div><div><strong>Choose an algorithm</strong><br><small>For our Monero experiment we use RandomX, a proof-of-work algorithm designed to favor general-purpose hardware. <a class="link" href="https://www.getmonero.org/get-started/mining/">Learn about Monero mining →</a></small></div></div>
+<div class="card step"><div class="num">04</div><div><strong>Create a wallet</strong><br><small>Use a wallet you control. Your recovery seed and private keys are never entered into this website or shared with anyone. <a class="link" href="https://www.getmonero.org/downloads/">Official Monero downloads →</a></small></div></div>
+<div class="card step"><div class="num">05</div><div><strong>Install the tools</strong><br><small>Android users can use Termux for a terminal environment. Install from a trusted official source and do not mix Termux builds from different sources. <a class="link" href="https://github.com/termux/termux-app">Termux documentation →</a></small></div></div>
+<div class="card step"><div class="num">06</div><div><strong>Connect to a pool</strong><br><small>A pool coordinates miners and records submitted shares. Always read the pool's own instructions before connecting. <a class="link" href="https://www.xmrpool.eu/xmr-monero-easy-mining-guide.html">XMRPool beginner guide →</a></small></div></div>
+<div class="card step"><div class="num">07</div><div><strong>Start the experiment</strong><br><small>Run the miner, watch the output and learn what every number means. Never paste a seed phrase or private key into a command.</small></div></div>
+<div class="card step"><div class="num">08</div><div><strong>Measure it</strong><br><small>Record hashrate, accepted/rejected shares, temperature, runtime and electricity consumption.</small></div></div>
+<div class="card step"><div class="num">09</div><div><strong>Calculate the economics</strong><br><small>Put your measured hashrate, power and electricity price into the calculator below.</small></div></div>
+<div class="card step"><div class="num">10</div><div><strong>Compare and publish</strong><br><small>Compare your result with other devices and contribute evidence to the CICAN benchmark database.</small></div></div>
+</section>
+
+<section>
+<h2>Our first live result</h2>
+<div class="grid">
+<div class="card"><small>Device</small><div class="metric">Pixel 6</div></div>
+<div class="card"><small>Observed hashrate</small><div class="metric">317–353 H/s</div></div>
+<div class="card"><small>Working estimate</small><div class="metric">~337 H/s</div></div>
+</div>
+<div class="card">Android 17 · Primo ARM Miner · Monero RandomX · XMRPool TLS · captured accepted shares 49/49, rejected 0 in the captured sequence.</div>
 </section>
 
 <section>
@@ -82,17 +96,8 @@ code{display:block;margin-top:12px;padding:14px;border-radius:10px;background:#0
 <div class="result"><small>Net / year</small><div class="value" id="year">€0.00</div></div>
 <div class="result"><small>Hashrate / watt</small><div class="value" id="efficiency">0 H/s/W</div></div>
 </div>
-<p class="note">This calculator uses the inputs you provide. Coin yield and price change over time; electricity cost and actual device power also vary. Results are estimates, not guaranteed earnings.</p>
+<p class="note">All market and yield inputs are estimates supplied by the user. They change over time and do not guarantee earnings.</p>
 </div>
-</section>
-
-<section>
-<h2>How to do it yourself</h2>
-<div class="card step"><div class="num">01</div><div><strong>Choose a cryptocurrency and algorithm.</strong><br><small>Start with an algorithm your device can actually run. RandomX is a useful CPU experiment.</small></div></div>
-<div class="card step"><div class="num">02</div><div><strong>Create your own wallet.</strong><br><small>Never share your seed phrase or private keys. Use your own receiving address.</small></div></div>
-<div class="card step"><div class="num">03</div><div><strong>Install a miner for your device.</strong><br><small>On Android, a terminal such as Termux can be used for compatible CPU miners.</small></div></div>
-<div class="card step"><div class="num">04</div><div><strong>Connect to a pool.</strong><br><small>Use the pool's official documentation and enter your own wallet address.</small></div></div>
-<div class="card step"><div class="num">05</div><div><strong>Measure before you believe the numbers.</strong><br><small>Record hashrate, accepted shares, temperature, runtime and electricity use.</small></div></div>
 </section>
 
 <section>
@@ -100,7 +105,7 @@ code{display:block;margin-top:12px;padding:14px;border-radius:10px;background:#0
 <div class="card">
 <strong>Pixel 6 · 8 threads · RandomX · XMRPool TLS</strong>
 <code>primo-arm-miner -a randomx -o stratum+ssl://xmrpool.eu:3333 -u YOUR_WALLET_ADDRESS -p x -t 8</code>
-<small>Replace YOUR_WALLET_ADDRESS with your own wallet address. Never paste a seed phrase or private key.</small>
+<small>Replace YOUR_WALLET_ADDRESS with your own receiving address. Never paste a seed phrase or private key.</small>
 </div>
 </section>
 
@@ -114,21 +119,21 @@ code{display:block;margin-top:12px;padding:14px;border-radius:10px;background:#0
 </section>
 
 <section>
+<h2>Safety & verification</h2>
+<div class="card"><strong>Never share your recovery seed or private keys.</strong><br><small>Download wallets and mining software from trusted sources, verify releases when possible, and treat unexpected scripts or commands as untrusted until you understand them.</small></div>
+</section>
+
+<section>
 <h2>What CICAN is building</h2>
 <div class="card">A public, evidence-first benchmark of real devices — phones, tablets, laptops, desktops and other hardware — showing what they can mine, how fast they are, how much energy they use and whether the economics make sense.</div>
 </section>
 
 <section>
-<h2>Core question</h2>
-<div class="card"><strong>How much cryptocurrency can an ordinary phone in your pocket actually earn?</strong><br><small>We answer with measurements, not marketing claims.</small></div>
-</section>
-
-<section>
 <h2>Roadmap</h2>
-<div class="card">Device benchmarks → algorithm comparison → energy measurement → profitability calculator → multi-device comparison → public benchmark database.</div>
+<div class="card">Learn → reproduce → benchmark → measure energy → calculate profitability → compare hardware → build the public CICAN benchmark database.</div>
 </section>
 
-<footer><p><small>CICAN CRYPTO MINING LAB · CICAN GEORGE ALIN · Mine. Measure. Compare. Learn.</small></p></footer>
+<footer><p><small>CICAN CRYPTO MINING LAB · CICAN GEORGE ALIN · Learn. Mine. Measure. Compare.</small></p></footer>
 </main>
 <script>
 const ids=["hashrate","coinPerDay","coinPrice","watts","electricity"];
@@ -140,15 +145,14 @@ function calculate(){
  const watts=Number(document.getElementById("watts").value)||0;
  const elec=Number(document.getElementById("electricity").value)||0;
  const revenue=coins*price;
- const energyKwh=watts*24/1000;
- const energyCost=energyKwh*elec;
+ const energyCost=watts*24/1000*elec;
  const net=revenue-energyCost;
  document.getElementById("revenue").textContent=money(revenue);
  document.getElementById("energy").textContent=money(energyCost);
  document.getElementById("profit").textContent=money(net);
  document.getElementById("month").textContent=money(net*30);
  document.getElementById("year").textContent=money(net*365);
- document.getElementById("efficiency").textContent=(watts? (h/watts).toFixed(1):"0")+" H/s/W";
+ document.getElementById("efficiency").textContent=(watts?(h/watts).toFixed(1):"0")+" H/s/W";
  document.getElementById("profitBox").className="result "+(net>=0?"positive":"negative");
 }
 ids.forEach(id=>document.getElementById(id).addEventListener("input",calculate));
