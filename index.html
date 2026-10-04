@@ -26,8 +26,17 @@ h2{margin-top:55px}
 .step{display:grid;grid-template-columns:54px 1fr;gap:16px;align-items:start}
 .num{font-size:28px;font-weight:800}
 code{display:block;margin-top:12px;padding:14px;border-radius:10px;background:#000;border:1px solid #222;overflow:auto;color:#ddd}
-small{color:#999}
-@media(max-width:700px){.grid{grid-template-columns:1fr}.step{grid-template-columns:42px 1fr}}
+.calculator{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.field{display:flex;flex-direction:column;gap:7px}
+.field label{font-size:13px;color:#aaa}
+.field input{width:100%;box-sizing:border-box;padding:13px 14px;border-radius:10px;border:1px solid #333;background:#000;color:#fff;font:inherit}
+.results{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:18px}
+.result{border:1px solid #252525;border-radius:14px;padding:18px;background:#050505}
+.result .value{font-size:27px;font-weight:800;margin-top:6px}
+.positive{border-color:#666}
+.negative{border-color:#333}
+.note{font-size:12px;color:#888;margin-top:12px}
+@media(max-width:700px){.grid,.calculator,.results{grid-template-columns:1fr}.step{grid-template-columns:42px 1fr}}
 </style>
 </head>
 <body>
@@ -51,6 +60,30 @@ small{color:#999}
 <div class="card">Google Pixel 6 · Android 17 · Primo ARM Miner · Monero RandomX · XMRPool TLS</div>
 <div class="card">Captured terminal sequence: accepted shares 49/49; rejected shares 0 in the captured sequence.</div>
 <div class="card">Power: battery-side measurements only so far. A USB-C power meter is required for a proper wall/input-watt measurement.</div>
+</section>
+
+<section>
+<h2>Profitability calculator</h2>
+<div class="card">
+<div class="calculator">
+<div class="field"><label for="hashrate">Hashrate (H/s)</label><input id="hashrate" type="number" min="0" step="0.01" value="337"></div>
+<div class="field"><label for="coinPerDay">Estimated coin per day</label><input id="coinPerDay" type="number" min="0" step="0.00000001" value="0.0000228"></div>
+<div class="field"><label for="coinPrice">Coin price (€)</label><input id="coinPrice" type="number" min="0" step="0.01" value="487"></div>
+<div class="field"><label for="watts">Device power (W)</label><input id="watts" type="number" min="0" step="0.1" value="5"></div>
+<div class="field"><label for="electricity">Electricity price (€/kWh)</label><input id="electricity" type="number" min="0" step="0.01" value="0.30"></div>
+</div>
+<div class="results">
+<div class="result"><small>Revenue / day</small><div class="value" id="revenue">€0.0000</div></div>
+<div class="result"><small>Electricity / day</small><div class="value" id="energy">€0.0000</div></div>
+<div class="result" id="profitBox"><small>Estimated net / day</small><div class="value" id="profit">€0.0000</div></div>
+</div>
+<div class="results">
+<div class="result"><small>Net / 30 days</small><div class="value" id="month">€0.00</div></div>
+<div class="result"><small>Net / year</small><div class="value" id="year">€0.00</div></div>
+<div class="result"><small>Hashrate / watt</small><div class="value" id="efficiency">0 H/s/W</div></div>
+</div>
+<p class="note">This calculator uses the inputs you provide. Coin yield and price change over time; electricity cost and actual device power also vary. Results are estimates, not guaranteed earnings.</p>
+</div>
 </section>
 
 <section>
@@ -97,5 +130,29 @@ small{color:#999}
 
 <footer><p><small>CICAN CRYPTO MINING LAB · CICAN GEORGE ALIN · Mine. Measure. Compare. Learn.</small></p></footer>
 </main>
+<script>
+const ids=["hashrate","coinPerDay","coinPrice","watts","electricity"];
+function money(n){return "€"+n.toFixed(4)}
+function calculate(){
+ const h=Number(document.getElementById("hashrate").value)||0;
+ const coins=Number(document.getElementById("coinPerDay").value)||0;
+ const price=Number(document.getElementById("coinPrice").value)||0;
+ const watts=Number(document.getElementById("watts").value)||0;
+ const elec=Number(document.getElementById("electricity").value)||0;
+ const revenue=coins*price;
+ const energyKwh=watts*24/1000;
+ const energyCost=energyKwh*elec;
+ const net=revenue-energyCost;
+ document.getElementById("revenue").textContent=money(revenue);
+ document.getElementById("energy").textContent=money(energyCost);
+ document.getElementById("profit").textContent=money(net);
+ document.getElementById("month").textContent=money(net*30);
+ document.getElementById("year").textContent=money(net*365);
+ document.getElementById("efficiency").textContent=(watts? (h/watts).toFixed(1):"0")+" H/s/W";
+ document.getElementById("profitBox").className="result "+(net>=0?"positive":"negative");
+}
+ids.forEach(id=>document.getElementById(id).addEventListener("input",calculate));
+calculate();
+</script>
 </body>
 </html>
