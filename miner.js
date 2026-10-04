@@ -1,11 +1,23 @@
 // CICAN Bitcoin Mining Lab
-// Step 2: Educational proof-of-work experiment.
-// This is a local educational miner. It uses an intentionally easy target
-// so that a normal computer can find a valid nonce quickly.
+// Step 3: Adjustable proof-of-work experiment.
+//
+// Usage:
+//   node miner.js 5
+//   node miner.js 6
+//
+// The number is the required count of leading zeroes.
+// This is an educational experiment, not a Bitcoin-network miner.
 
 const crypto = require("crypto");
 
-const prefix = "00000";
+const difficulty = Number.parseInt(process.argv[2] || "6", 10);
+
+if (!Number.isInteger(difficulty) || difficulty < 1 || difficulty > 15) {
+  console.error("Difficulty must be a whole number from 1 to 15.");
+  process.exit(1);
+}
+
+const prefix = "0".repeat(difficulty);
 const blockData = "CICAN Bitcoin Mining Lab - proof-of-work experiment";
 let nonce = 0;
 let hashes = 0;
@@ -18,6 +30,7 @@ function sha256d(text) {
 
 console.log("CICAN Bitcoin Mining Lab");
 console.log("------------------------");
+console.log("Difficulty:", difficulty, "leading zeroes");
 console.log("Target prefix:", prefix);
 console.log("Mining...");
 
